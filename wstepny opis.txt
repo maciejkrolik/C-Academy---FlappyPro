@@ -1,0 +1,8 @@
+Maciej Królik
+Email: maciekkrolik111@gmail.com
+
+Technologia:
+Unity
+
+Opis:
+Prosta gra w stylu Flappy Bird na urz¹dzenia z systemem Android z dodatkowymi trybami rozgrywki takimi jak niszczenie rur zamiast ich omijania czy rozgrywka w nocy (ograniczone pole widzenia). Dodatkowo zaimplementowane zostan¹ power-upy np. pojazd, który pozwala nam przez kilka sekund zniszczyæ ka¿d¹ rurê zamiast siê o ni¹ rozbiæ. Po drodze zbiera³oby siê równie¿ monety, które pozwala³yby kupowaæ inne kolory ptaków. Gra zapisywa³aby te¿ oczywiœcie najlepsze wyniki.
