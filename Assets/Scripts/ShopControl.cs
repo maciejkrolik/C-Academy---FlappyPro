@@ -10,4 +10,9 @@ public class ShopControl : MonoBehaviour
         SceneManager.UnloadSceneAsync(name);
         GameControl.instance.UnloadScene_Shop();
     }
+
+    public void LoadBird(int index)
+    {
+        PlayerPrefs.SetInt("BirdColor", index);
+    }
 }
