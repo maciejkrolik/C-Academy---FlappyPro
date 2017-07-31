@@ -7,16 +7,14 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
-    public GameObject gameOverText;
-    public GameObject shopButton;
-    public GameObject homeButton;
-    public Text highScoreText;
-    public Text scoreText;
+    public GameObject gameOverText, shopButton, homeButton;
+    public Text scoreText, highScoreText;
 
     public bool gameOver = false;
     public float scrollSpeed = -1.5f;
 
-    private int score = 0;
+    private int score = 0, money;
+    private bool Died = false;
 
     // Use this for initialization
     void Awake()
@@ -52,14 +50,24 @@ public class GameControl : MonoBehaviour
 
     public void BirdDied()
     {
-        if (PlayerPrefs.GetInt("HighScore", 0) < score)
-            PlayerPrefs.SetInt("HighScore", score);
-        gameOverText.SetActive(true);
-        shopButton.SetActive(true);
-        homeButton.SetActive(true);
-        highScoreText.text = "Highscore: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-        highScoreText.gameObject.SetActive(true);
-        gameOver = true;
+
+        if (Died == false)
+        {
+            if (PlayerPrefs.GetInt("HighScore", 0) < score)
+                PlayerPrefs.SetInt("HighScore", score);
+
+            //Adding money
+            money = PlayerPrefs.GetInt("Money", 0);
+            PlayerPrefs.SetInt("Money", money += score);
+
+            gameOverText.SetActive(true);
+            shopButton.SetActive(true);
+            homeButton.SetActive(true);
+            highScoreText.text = "Highscore: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+            highScoreText.gameObject.SetActive(true);
+            gameOver = true;
+            Died = true;
+        }
     }
 
     public void LoadScene_Shop(string name)

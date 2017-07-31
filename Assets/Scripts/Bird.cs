@@ -16,7 +16,6 @@ public class Bird : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
 
         //Changing bird color
         characterList = new GameObject[transform.childCount];
@@ -26,6 +25,9 @@ public class Bird : MonoBehaviour
         }
         int birdColor = PlayerPrefs.GetInt("BirdColor", 0);
         characterList[birdColor].SetActive(true);
+
+        //Assigning right animation
+        anim = characterList[birdColor].GetComponent<Animator>();
 
         //Doing one flap after loading the scene
         rb2d.AddForce(new Vector2(0, upForce));

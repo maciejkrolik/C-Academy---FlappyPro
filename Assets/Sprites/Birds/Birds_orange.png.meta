@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: 383a2851dd7c3754982d1e187f6b7b6a
-timeCreated: 1501070221
+guid: 9e0562792ea6b27468a013068f8d678f
+timeCreated: 1501426573
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Birds_red_0
-    21300002: Birds_red_1
-    21300004: Birds_red_2
+    21300000: Birds_orange_0
+    21300002: Birds_orange_1
+    21300004: Birds_orange_2
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -81,7 +81,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Birds_red_0
+      name: Birds_orange_0
       rect:
         serializedVersion: 2
         x: 10
@@ -94,7 +94,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Birds_red_1
+      name: Birds_orange_1
       rect:
         serializedVersion: 2
         x: 10
@@ -107,7 +107,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Birds_red_2
+      name: Birds_orange_2
       rect:
         serializedVersion: 2
         x: 10
