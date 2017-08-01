@@ -9,6 +9,7 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public GameObject gameOverText, shopButton, homeButton;
     public Text scoreText, highScoreText;
+    public AudioSource audioDie, audioPoint;
 
     public bool gameOver = false;
     public float scrollSpeed = -1.5f;
@@ -44,6 +45,7 @@ public class GameControl : MonoBehaviour
         {
             return;
         }
+        audioPoint.Play();
         score++;
         scoreText.text = "Score: " + score.ToString();
     }
@@ -60,6 +62,7 @@ public class GameControl : MonoBehaviour
             money = PlayerPrefs.GetInt("Money", 0);
             PlayerPrefs.SetInt("Money", money += score);
 
+            audioDie.Play();
             gameOverText.SetActive(true);
             shopButton.SetActive(true);
             homeButton.SetActive(true);
