@@ -77,6 +77,8 @@ public class GameControl : MonoBehaviour
     {
         SceneManager.LoadScene(name, LoadSceneMode.Additive);
         gameOverText.SetActive(false);
+        highScoreText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
         shopButton.SetActive(false);
         homeButton.SetActive(false);
     }
@@ -84,8 +86,15 @@ public class GameControl : MonoBehaviour
     public void UnloadScene_Shop()
     {
         gameOverText.SetActive(true);
+        highScoreText.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
         shopButton.SetActive(true);
         homeButton.SetActive(true);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void LoadScene(string name)

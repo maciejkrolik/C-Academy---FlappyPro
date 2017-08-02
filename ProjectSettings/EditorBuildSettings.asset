@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/flappy.unity
     guid: 6934bc1d93cba1547a77da9755b790c2
   - enabled: 1
+    path: Assets/_Scenes/flappyNight.unity
+    guid: bfeb1b38ed9a544489a92e504de9593c
+  - enabled: 1
     path: Assets/_Scenes/shop.unity
     guid: c97131ff4d5e9394196b6253d0497024
   - enabled: 1
