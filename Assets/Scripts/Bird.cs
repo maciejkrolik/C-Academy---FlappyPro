@@ -103,9 +103,10 @@ public class Bird : MonoBehaviour
             }
         }
     }
+    
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (GameControl.instance.isMachineOn == false)
+        if (GameControl.instance.isMachineOn == false && isDead == false)
         {
             rb2d.velocity = new Vector2(2, 0);
             isDead = true;
