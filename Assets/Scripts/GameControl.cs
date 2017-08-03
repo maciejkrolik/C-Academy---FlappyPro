@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,13 +8,14 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public GameObject gameOverText, shopButton, homeButton;
     public Text scoreText, highScoreText;
-    public AudioSource audioDie, audioPoint;
+    public AudioSource audioDie, audioPoint, audioPowerUp;
 
-    public bool gameOver = false;
+    public bool gameOver = false, isMachineOn = false;
     public float scrollSpeed = -1.5f;
 
     private int score = 0, money;
     private bool Died = false;
+    private GameObject powerUp;
 
     // Use this for initialization
     void Awake()
@@ -27,15 +27,6 @@ public class GameControl : MonoBehaviour
         else if (instance != this)
         {
             Destroy(gameObject);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameOver == true && Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
         }
     }
 
@@ -52,13 +43,13 @@ public class GameControl : MonoBehaviour
 
     public void BirdDied()
     {
-
         if (Died == false)
         {
+            // Setting High Score
             if (PlayerPrefs.GetInt("HighScore", 0) < score)
                 PlayerPrefs.SetInt("HighScore", score);
 
-            //Adding money
+            // Adding money
             money = PlayerPrefs.GetInt("Money", 0);
             PlayerPrefs.SetInt("Money", money += score);
 
@@ -71,6 +62,16 @@ public class GameControl : MonoBehaviour
             gameOver = true;
             Died = true;
         }
+    }
+
+    public void BirdPowerUp()
+    {
+        isMachineOn = true;
+        powerUp = GameObject.Find("PowerUp(Clone)");
+        powerUp.GetComponent<SpriteRenderer>().enabled = false;
+        GameObject.Find("Bird").GetComponent<SpriteRenderer>().enabled = true;
+        audioPowerUp.Play();
+        StartCoroutine(MachineTimer());
     }
 
     public void LoadScene_Shop(string name)
@@ -100,5 +101,14 @@ public class GameControl : MonoBehaviour
     public void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    IEnumerator MachineTimer()
+    {
+        powerUp = GameObject.Find("PowerUp(Clone)");
+        yield return new WaitForSeconds(10);
+        GameObject.Find("Bird").GetComponent<SpriteRenderer>().enabled = false;
+        isMachineOn = false;
+        powerUp.GetComponent<SpriteRenderer>().enabled = true;
     }
 }

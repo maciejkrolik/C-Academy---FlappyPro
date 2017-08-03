@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -21,15 +19,13 @@ public class ShopControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerPrefs.DeleteAll();                      //TYMCZASOWO
-        //PlayerPrefs.SetInt("Money", 250);             //TYMCZASOWO
-
-        //Setting default bird to bought in a shop
+        // Setting default bird to bought in a shop
         PlayerPrefs.SetInt("isBird0Bought", 1);
 
+        // Setting money text
         moneyText.text = "Money: " + PlayerPrefs.GetInt("Money", 0).ToString();
 
-        //Setting bird's prices
+        // Setting bird's prices
         birdsPrices = new int[numberOfBirds];
         birdsPrices[0] = 0;
         birdsPrices[1] = 50;
@@ -38,7 +34,7 @@ public class ShopControl : MonoBehaviour
         birdsPrices[4] = 200;
         birdsPrices[5] = 250;
 
-        //Setting appropriate sprites for plates
+        // Setting appropriate sprites for plates
         sprites = new Sprite[numberOfBirds];
         sprites[0] = blueButton;
         sprites[1] = aquaButton;
@@ -61,18 +57,12 @@ public class ShopControl : MonoBehaviour
         }
     }
 
-    public void UnloadScene(string name)
-    {
-        SceneManager.UnloadSceneAsync(name);
-        GameControl.instance.UnloadScene_Shop();
-    }
-
     public void LoadBird(int index)
     {
         string isBirdBought = "isBird" + index + "Bought";
         string button = index + "Button";
 
-        //Buying a bird
+        // Buying a bird
         if (PlayerPrefs.GetInt(isBirdBought, 0) == 0 && PlayerPrefs.GetInt("Money", 0) >= birdsPrices[index])
         {
             PlayerPrefs.SetInt(isBirdBought, 1);
@@ -81,23 +71,29 @@ public class ShopControl : MonoBehaviour
             PlayerPrefs.SetInt("BirdColor", index);
             string buttonText = index + "Price";
 
-            //Refreshing objects
+            // Refreshing objects
             GameObject.Find(button).GetComponent<Button>().image.sprite = sprites[index];
             GameObject.Find(buttonText).GetComponent<Text>().text = null;
             moneyText.text = "Money: " + PlayerPrefs.GetInt("Money", 0).ToString();
             return;
         }
-        //Setting a bought bird
+        // Setting a bought bird
         if (PlayerPrefs.GetInt(isBirdBought, 0) == 1)
         {
             PlayerPrefs.SetInt("BirdColor", index);
             UnloadScene("shop");
             return;
         }
-        //Buying a bird (not enough money)
+        // Buying a bird (not enough money)
         if (PlayerPrefs.GetInt(isBirdBought, 0) == 0 && PlayerPrefs.GetInt("Money", 0) < birdsPrices[index])
         {
             return;
         }
+    }
+
+    public void UnloadScene(string name)
+    {
+        SceneManager.UnloadSceneAsync(name);
+        GameControl.instance.UnloadScene_Shop();
     }
 }
