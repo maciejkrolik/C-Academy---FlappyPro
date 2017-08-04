@@ -1,0 +1,47 @@
+Maciej Królik
+Email: maciekkrolik111@gmail.com
+
+Technologia:
+Unity
+
+Link do filmu:
+youtu.be/bdHtm5WHUYg
+
+Opis:
+Uda³o mi siê zrealizowaæ wszystkie za³o¿enia z opisu wstêpnego tzn. gra zawiera dodatkowy tryb rozgrywki z ograniczonym polem widzenia, istniej¹ power-upy daj¹ce czasow¹ niezniszczalnoœæ, stworzony zosta³ sklep z ró¿nymi kolorami ptaków, a tak¿e gra zapisuje najlepsze wyniki.
+
+Z elementów, które warto u¿yæ wykorzysta³em oczywiœcie hermetyzacjê (niemal¿e w ka¿dym skrypcie), stara³em siê pisaæ zgodnie z zasadami czystego kodu (metody nie przekraczaj¹ jednego ekranu itd.), w pewnym sensie stosujê te¿ polimorfizm, poniewa¿ u¿ywa³em tego samego skryptu przy wielu obiektach i elementach. Oczywiœcie w ka¿dym skrypcie Unity jest te¿ stosowane dziedziczenie po MonoBehaviour.
+
+Ca³y kod jest doœæ dok³adnie opisany w komentarzach w nim samym. Poni¿ej dodajê te¿ opis poszczególnych skryptów tzn. do czego s³u¿y i ewentualnie jak dzia³a jeœli nie jest to oczywiste.
+
+
+Skrypty (wszystkie s¹ dostêpne w folderze Assets/Scripts):
+- Bird.cs - po uruchomieniu przypisujê odpowiedni kolor ptaka (kolor jest zapisywany w pamiêci wiêc po restarcie w³¹cza siê taki sam jak poprzednio), skrypt odpowiada te¿ za odpowiednie ruchy ptaka po dotkniêciu ekranu (rb2d.AddForce()), a tak¿e nak³adaniem efektu Vignette czyli ograniczonego pola widzenia w trybie nocnym. W metodzie LateUpdate() jest równie¿ zaimplementowany mechanizm powrotu ptaka do pierwotnej pozycji po uderzeniu w rurê kiedy aktywny jest power-up. W metodach OnColission enter, stay i exit s¹ zapisane dzia³ania wykonywane po kolizji z innym obiektem.
+
+- Column.cs - wykrywa wejœcie ptaka w niewidoczny collider znajduj¹cy siê tu¿ za kolumnami, a nastêpnie wywo³ujê metodê z klasy GameControl aby doliczyæ punkt.
+
+- ColumnPool.cs - na pocz¹tku generuje piêæ kolumn, a nastêpnie zgodnie ze wzorcem Object Pooling, w odpowiednim czasie przesuwa kolumny na nowe pozycje (dok³adne komentarze s¹ w kodzie).
+
+- PowerUp.cs oraz PowerUpPool.cs - analoicznie jak Column.cs i ColumnPool.cs z t¹ ró¿nic¹, ¿e dla pojedynczego obiektu jakim jest power-up.
+
+- GameControl.cs - zawiera metody z prostymi dzia³aniami takimi jak doliczenie punktu i odtworzenie dŸwiêku po przeleceniu przez kolumny czy zatrzymanie przesuwania t³a po œmierci ptaka, s¹ tam te¿ metody odpowiedzialne za ³adowanie scen np. sceny ze sklepem.
+
+- MenuControl.cs - zawiera metody odpowiedzialne za ³adowanie ekranu ustawieñ, a tak¿e wy³¹czenie gry po naciœniêciu przycisku "back" na Androidzie.
+
+- RepeatingBackgrounds.cs - w ca³oœci wyjaœnione w filmie, reszta jest w samym kodzie
+
+- ScrollingObject.cs - powoduje przesuwanie obiektu na który na³o¿y siê ten skrypt tzw. "scrollowanie", sprawiaj¹c efekt poruszaj¹cego siê ptaka podaczas gdy ten tak naprawdê stoi w miejscu, a poruszaj¹ siê inne elementy gry.
+
+- SettingsControl.cs - zawiera dwie metody. Pierwsza odpowiedzialna za usuniêcie wszystkich zapisanych danych, a druga cofniêcie siê do sceny menu.
+
+- ShopControl.cs - ka¿dy element jest opisany w kodzie w komentarzach. Skrypt zawiera ca³¹ logikê sklepu. Tworzona jest tablica zarówno sprite'ów jak i cen ptaków. Przy uruchomieniu sceny odpowiednie sprity i ceny s¹ przypisywane odpowiednim elementom i wyœwietlane na ekranie. Natomiast przy zakupie czy zmianie koloru "po indeksie elementu" ustawiana jest odpowiednia wartoœæ oraz odœwie¿any widok.
+
+
+Inne informacje:
+- Do zrobienia ograniczonego pola widzenia w trybie night wykorzysta³em PostProcessing (https://docs.unity3d.com/Manual/PostProcessingOverview.html) ustawiaj¹c jego parametry za pomoc¹ kodu (dok³adnie w pliku Bird.cs w metodzie Update()),
+
+- Ekran sklepu oraz ustawieñ jest ³adowany z parametrem Additive (https://docs.unity3d.com/ScriptReference/SceneManagement.LoadSceneMode.Additive.html) dziêki czemu w tle ca³y czas jest widoczna poprzednio za³adowana scena,
+
+- Na Githubie s¹ wrzucone wszystkie potrzebne pliki do uruchomienia ca³ego projektu w Unity,
+
+- Przy pisaniu gry korzysta³em oczywiœcie z wielu tutoriali dostêpnych w internecie, a tak¿e ze Stack Overflow.
