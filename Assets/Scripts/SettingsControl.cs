@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SettingsControl : MonoBehaviour
 {
+    // Reseting all Player Prefs keys
     public void ResetGame()
     {
         PlayerPrefs.DeleteAll();

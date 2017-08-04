@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RepeatingBackground : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class RepeatingBackground : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Getting component and length of the background
         groundCollider = GetComponent<BoxCollider2D>();
         groundHorizontalLength = groundCollider.size.x;
     }

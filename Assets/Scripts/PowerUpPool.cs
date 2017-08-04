@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PowerUpPool : MonoBehaviour {
 
@@ -17,8 +15,11 @@ public class PowerUpPool : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        // Spawning a power-up
         powerUp = Instantiate(powerUpPrefab, objectPoolPosition, Quaternion.identity);
+        // Lottery spawn y position from the given range
         float spawnYPosition = Random.Range(powerUpMin, powerUpMax);
+        // Setting first position of the power-up
         powerUp.transform.position = new Vector2(spawnXPostion, spawnYPosition);
     }
 	
@@ -27,6 +28,7 @@ public class PowerUpPool : MonoBehaviour {
     {
         timeSinceLastSpawned += Time.deltaTime;
 
+        // Changing power-up position
         if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate)
         {
             timeSinceLastSpawned = 0;

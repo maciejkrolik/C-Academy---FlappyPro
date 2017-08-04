@@ -5,12 +5,7 @@ using UnityEngine.UI;
 public class ShopControl : MonoBehaviour
 {
     public Text moneyText;
-    public Sprite blueButton;
-    public Sprite aquaButton;
-    public Sprite greenButton;
-    public Sprite orangeButton;
-    public Sprite pinkButton;
-    public Sprite yellowButton;
+    public Sprite blueButton, aquaButton, greenButton, orangeButton, pinkButton, yellowButton;
 
     private int[] birdsPrices;
     private Sprite[] sprites;
@@ -49,6 +44,7 @@ public class ShopControl : MonoBehaviour
             string button = index + "Button";
             string buttonText = index + "Price";
             GameObject.Find(buttonText).GetComponent<Text>().text = birdsPrices[index].ToString();
+            // If bird is bought setting plate without red line on it
             if (PlayerPrefs.GetInt(isBirdBought, 0) == 1)
             {
                 GameObject.Find(button).GetComponent<Button>().image.sprite = sprites[index];

@@ -3,6 +3,8 @@ using UnityEngine.PostProcessing;
 
 public class Bird : MonoBehaviour
 {
+    // Machine is on means that power-up is active
+
     public float upForce = 200f;
 
     private bool isDead = false, isNight = false;
@@ -104,6 +106,7 @@ public class Bird : MonoBehaviour
         }
     }
     
+    // When bird is sliding on a grass
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (GameControl.instance.isMachineOn == false && isDead == false)

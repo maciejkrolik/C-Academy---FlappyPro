@@ -17,6 +17,7 @@ public class ColumnPool : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Spawning columns
         columns = new GameObject[columnPoolSize];
         for (int i = 0; i < columnPoolSize; i++)
         {
@@ -29,10 +30,12 @@ public class ColumnPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
 
+        // Changing columns positions
         if (GameControl.instance.gameOver == false && timeSinceLastSpawned >= spawnRate)
         {
             timeSinceLastSpawned = 0;
             float spawnYPosition = Random.Range(columnMin, columnMax);
+            // Object pooling pattern
             columns[currentColumn].transform.position = new Vector2(spawnXPostion, spawnYPosition);
             currentColumn++;
             if (currentColumn >= columnPoolSize)

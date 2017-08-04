@@ -2472,6 +2472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerUpPrefab: {fileID: 1578419250676930, guid: 968ebf266d5b0d5459de1e7239befea6,
     type: 2}
+  powerUpMin: -1
+  powerUpMax: 3.5
 --- !u!1 &2084147395
 GameObject:
   m_ObjectHideFlags: 0

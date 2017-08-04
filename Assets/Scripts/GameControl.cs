@@ -20,6 +20,7 @@ public class GameControl : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        // Singleton pattern
         if (instance == null)
         {
             instance = this;
@@ -103,6 +104,7 @@ public class GameControl : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    // Calculates time when power-up is active
     IEnumerator MachineTimer()
     {
         powerUp = GameObject.Find("PowerUp(Clone)");
